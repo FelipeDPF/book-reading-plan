@@ -3,6 +3,8 @@
 ## Description
 The **Book Reading Plan** is a web application designed to help users organize their reading habits. Users can input book details, total pages, and a target completion date, and the app calculates the number of pages to read daily.
 
+![Demo](demo/demo.gif)
+
 ## Features
 - Add books to your reading plan.
 - Automatically calculates the number of pages to read per day.
