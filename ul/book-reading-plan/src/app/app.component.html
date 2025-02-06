@@ -1,0 +1,39 @@
+<div class="container">
+  <header>
+    <h1>Book Reading Plan</h1>
+  </header>
+
+  <section class="form-section">
+    <input type="text" placeholder="Book Name" [(ngModel)]="newBookPlan.bookName" />
+    <input type="number" placeholder="Total Pages" [(ngModel)]="newBookPlan.totalPages" />
+    <input type="date" placeholder="Target Date" [(ngModel)]="newBookPlan.targetDate" />
+    <button (click)="addReadingPlan()">Add Plan</button>
+  </section>
+
+  <table class="reading-table">
+    <thead>
+      <tr>
+        <th>Book Name</th>
+        <th>Total Pages</th>
+        <th>Target Date</th>
+        <th>Pages/Day</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let plan of readingPlans">
+        <td>{{ plan.book_name }}</td>
+        <td>{{ plan.total_pages }}</td>
+        <td>{{ plan.target_date }}</td>
+        <td>{{ plan.pages_per_day }} pages/day</td>
+        <td>
+          <button class="delete-btn" (click)="deleteReadingPlan(plan.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    <p>Happy Reading! 📚</p>
+  </footer>
+</div>
