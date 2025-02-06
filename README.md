@@ -12,6 +12,7 @@ The **Book Reading Plan** is a web application designed to help users organize t
 - Delete books from your plan.
 
 ## Technologies Used
+Refer to the official documentation for installation instructions for the following technologies:
 - **Frontend**: Angular 19.1.4
 - **Backend**: Python FastAPI
 - **Database**: MySQL
@@ -19,23 +20,23 @@ The **Book Reading Plan** is a web application designed to help users organize t
 ## How to Run the Project
 1. Clone the repository:
    ```bash
-   git clone https://github.com/FelipeDPF/BookReadingPlan.git
-   cd BookReadingPlan``` 
+   git clone https://github.com/FelipeDPF/book-reading-plan.git
+   cd book-reading-plan``` 
 
 2. Set up the backend:
-- Install dependencies:
- ```pip install fastapi mysql-connector-python uvicorn```
+- Navigate to the api directory:
+```cd api```
 - Start the backend server:
-```uvicorn main:app --reload```
+```python3 -m uvicorn main:app --reload```
 
 3.	Set up the frontend:
-- Install dependencies:
-```npm install```
 - Start the Angular app:
 ```ng serve --o```
 
 4. Access the application in your browser:
-```http://localhost:4200```
+- Backend API: ```http://127.0.0.1:8000```
+- Backend API Documentation: ```http://127.0.0.1:8000/docs#/```   
+- Frondend: ```http://localhost:4200```
 
 ## Future Improvements
 - Add user authentication.
