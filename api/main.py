@@ -1,65 +1,25 @@
-from fastapi import FastAPI, Form
-import mysql.connector
+from fastapi import FastAPI
+from routers import plans  # Importing the router module for handling API routes
 from fastapi.middleware.cors import CORSMiddleware
+from core.database import get_db_cursor  # Importing the database connection function
 
 app = FastAPI()
 
-# Database connection
-conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Sup@r8174",
-    database="sys_bookreadingplandb"
-)
-
-# Enable CORS
+# Enable CORS to allow cross-origin requests (useful for frontend communication)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # Allow requests from any origin
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
 )
+
+# Include API routes from the plans router
+app.include_router(plans.router)
+
+# Initialize the database connection (creates a new connection on startup)
+get_db_cursor()
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to the Book Reading Plan API"}
-
-# Get all reading plans
-@app.get("/get_reading_plans")
-def get_reading_plans():
-    cursor = conn.cursor(dictionary=True)
-    query = """
-    SELECT 
-        id, 
-        book_name, 
-        total_pages, 
-        target_date, 
-        FLOOR(total_pages / DATEDIFF(target_date, CURDATE())) AS pages_per_day, 
-        created_at 
-    FROM sys_reading_plan
-    """
-    cursor.execute(query)
-    results = cursor.fetchall()
-    return results
-
-# Add a new reading plan
-@app.post("/add_reading_plan")
-def add_reading_plan(book_name: str = Form(...), total_pages: int = Form(...), target_date: str = Form(...)):
-    cursor = conn.cursor()
-    query = """
-    INSERT INTO sys_reading_plan (book_name, total_pages, target_date)
-    VALUES (%s, %s, %s)
-    """
-    cursor.execute(query, (book_name, total_pages, target_date))
-    conn.commit()
-    return {"message": "Reading plan added successfully!"}
-
-# Delete a reading plan
-@app.post("/delete_reading_plan")
-def delete_reading_plan(id: int = Form(...)):
-    cursor = conn.cursor()
-    query = "DELETE FROM sys_reading_plan WHERE id = %s"
-    cursor.execute(query, (id,))
-    conn.commit()
-    return {"message": "Reading plan deleted successfully!"}
+    return {"message": "Welcome to the Book Reading Plan API!"}
