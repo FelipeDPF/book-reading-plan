@@ -5,3 +5,6 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+
+# .env files
+.env
