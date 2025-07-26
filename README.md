@@ -23,20 +23,63 @@ Refer to the official documentation for installation instructions for the follow
    git clone https://github.com/FelipeDPF/book-reading-plan.git
    cd book-reading-plan``` 
 
-2. Set up the backend:
-- Navigate to the api directory:
+### BACKEND SETUP (FastAPI + MySQL)
+2. Navigate to the backend folder:
 ```cd api```
-- Start the backend server:
+
+3. (Optional but recommended) Create and activate a virtual environment:
+```python3 -m venv venv```
+```source venv/bin/activate```  # For Windows use: venv\Scripts\activate
+
+4. Install backend dependencies:
+```pip install -r requirements.txt```
+
+5. Start the backend server:
 ```python3 -m uvicorn main:app --reload```
 
-3.	Set up the frontend:
-- Start the Angular app:
+### Backend will be live at:
+http://127.0.0.1:8000
+### Swagger API Docs:
+http://127.0.0.1:8000/docs
+
+💡 If you change or install new packages, regenerate `requirements.txt` using:
+pip freeze > requirements.txt
+
+
+### FRONTEND SETUP (Angular)
+1. Navigate to the Angular frontend folder:
+```cd ul/book-reading-plan```
+
+2. Install frontend dependencies:
+```npm install```
+
+3. Run the frontend Angular app:
 ```ng serve --o```
 
-4. Access the application in your browser:
-- Backend API: ```http://127.0.0.1:8000```
-- Backend API Documentation: ```http://127.0.0.1:8000/docs#/```   
-- Frondend: ```http://localhost:4200```
+# Frontend will be live at:
+http://localhost:4200
+
+
+# PROJECT STRUCTURE
+```
+book-reading-plan/
+├── api/                    # FastAPI backend
+│   ├── main.py
+│   ├── models/
+│   ├── routers/
+│   ├── services/
+│   ├── schemas/
+│   └── requirements.txt    # ← Python dependencies
+├── ul/book-reading-plan/   # Angular frontend
+│   ├── src/
+│   ├── package.json        # ← Node dependencies
+│   └── ...
+└── README.md
+```
+
+# NOTES
+- Make sure MySQL is installed and running if backend needs it.
+- The frontend and backend communicate locally (CORS already enabled in FastAPI).
 
 ## Future Improvements
 - Add user authentication.
